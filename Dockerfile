@@ -5,6 +5,7 @@ RUN go install
 # ENTRYPOINT ["/bin/sh", "-c", "/go/bin/vanity-age | /usr/bin/tee"]
 RUN \
     echo "#!/bin/sh" > /entrypoint.sh &&\
+    echo "set -f" >> /entrypoint.sh &&\
     echo "/go/bin/vanity-age \$1 | /usr/bin/tee /key.txt" >> /entrypoint.sh &&\
     # echo "echo $1" >> /entrypoint.sh &&\
     chmod 755 /entrypoint.sh
